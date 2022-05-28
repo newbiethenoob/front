@@ -7,6 +7,14 @@
       <meta charset="UTF-8">
       <link rel="stylesheet" href="css/mypage.css">
       <title>Mypage 작성글 확인(기본페이지)</title>
+      <meta http-equiv="Content-Type" content="text/html;">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="css/main.css">
+      <link href="css/bootstrap.min.css" rel="stylesheet">
+      <link href="css/bootstrap.css" rel="stylesheet">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+      <script src="js/bootstrap.min.js"></script>
+    </head>
     </head>
 
     <header>
@@ -14,6 +22,10 @@
     </header>
 
     <body>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="sticky-top">
       <!--마이페이지 사이드바-->
       <div class="mypage-sidebar">
         <div class="mypage-category">
@@ -28,151 +40,193 @@
           </div>
         </div>
       </div>
-
-
-      <!--마이페이지 바디-->
+    </div>
+    </div>
+    <div class="col-10">
+            <!--마이페이지 바디-->
       <!-- 목록 리스트 -->
       <span id="mypage_mywriting">
-        <table class="document">
           <h2> 나의 작성 문서 </h2>
-          <thead id="list_title">
-
-            <tr>
-              <th>번호</th>
-              <th>제목</th>
-              <th>다운로드</th>
-              <th>소속 기관</th>
-              <th>작성일</th>
-              <th>작성자</th>
-            </tr>
-          </thead>
-
-          <tbody class="list-body">
-            <tr>
-              <td>10</td>
-              <td>공공문서 관련한 문서 관리</td>
-              <td>파일</td>
-              <td>세종특별청사</td>
-              <td>5/19</td>
-              <td>부서관</td>
-            </tr>
-            <tr>
-              <td>10</td>
-              <td>공공문서 관련한 문서 관리</td>
-              <td>파일</td>
-              <td>세종특별청사</td>
-              <td>5/19</td>
-              <td>부서관</td>
-            </tr>
-            <tr>
-              <td>10</td>
-              <td>공공문서 관련한 문서 관리</td>
-              <td>파일</td>
-              <td>세종특별청사</td>
-              <td>5/19</td>
-              <td>부서관</td>
-            </tr>
-            <tr>
-              <td>10</td>
-              <td>공공문서 관련한 문서 관리</td>
-              <td>파일</td>
-              <td>세종특별청사</td>
-              <td>5/19</td>
-              <td>부서관</td>
-            </tr>
-            <tr>
-              <td>10</td>
-              <td>공공문서 관련한 문서 관리</td>
-              <td>파일</td>
-              <td>세종특별청사</td>
-              <td>5/19</td>
-              <td>부서관</td>
-            </tr>
-            <c:forEach items="${boardList}" var="board">
+          <table class="table table-hover">
+            <thead id="list_title">
               <tr>
-                <td>${board.pk}</td>
-                <td>${board.title}</td>
-                <td>${다운로드}</td>
-                <td>${board.deptDescription}</td>
-                <td>${board.date}</td>
-                <td>${board.userName}</td>
+                <th>번호</th>
+                <th>제목</th>
+                <th>다운로드</th>
+                <th>소속 기관</th>
+                <th>작성일</th>
+                <th>작성자</th>
               </tr>
-            </c:forEach>
+            </thead>
+            <tbody class="list-body">
+              <tr>
+                <td>10</td>
+                <td>공공문서 관련한 문서 관리</td>
+                <td>파일</td>
+                <td>세종특별청사</td>
+                <td>5/19</td>
+                <td>부서관</td>
+              </tr>
+              <tr>
+                <td>10</td>
+                <td>공공문서 관련한 문서 관리</td>
+                <td>파일</td>
+                <td>세종특별청사</td>
+                <td>5/19</td>
+                <td>부서관</td>
+              </tr>
+              <tr>
+                <td>10</td>
+                <td>공공문서 관련한 문서 관리</td>
+                <td>파일</td>
+                <td>세종특별청사</td>
+                <td>5/19</td>
+                <td>부서관</td>
+              </tr>
+              <tr>
+                <td>10</td>
+                <td>공공문서 관련한 문서 관리</td>
+                <td>파일</td>
+                <td>세종특별청사</td>
+                <td>5/19</td>
+                <td>부서관</td>
+              </tr>
+              <tr>
+                <td>10</td>
+                <td>공공문서 관련한 문서 관리</td>
+                <td>파일</td>
+                <td>세종특별청사</td>
+                <td>5/19</td>
+                <td>부서관</td>
+              </tr>
+              <c:forEach items="${boardList}" var="board">
+                <tr>
+                  <td>${board.pk}</td>
+                  <td>${board.title}</td>
+                  <td>${다운로드}</td>
+                  <td>${board.deptDescription}</td>
+                  <td>${board.date}</td>
+                  <td>${board.userName}</td>
+                </tr>
+              </c:forEach>
 
-          </tbody>
-        </table>
+            </tbody>
+          </table>
 
       </span>
 
       <!-- 즐겨찾기 -->
       <span id="mypage_starmark">
-        <table class="document">
           <h2> 즐겨찾기 </h2>
-          <thead id="list_title">
+          <table class="table table-hover">
+            <thead id="list_title">
 
-            <tr>
-              <th>번호</th>
-              <th>제목</th>
-              <th>다운로드</th>
-              <th>소속 기관</th>
-              <th>작성일</th>
-              <th>작성자</th>
-              <th>수정</th>
-            </tr>
-          </thead>
-          <tbody class="list-body">
-            <c:forEach items="${boardList}" var="board">
               <tr>
-                <td>${board.pk}</td>
-                <td>${board.title}</td>
-                <td>${다운로드}</td>
-                <td>${board.deptDescription}</td>
-                <td>${board.date}</td>
-                <td>${board.userName}</td>
-                <td>${수정}</td>
+                <th>번호</th>
+                <th>제목</th>
+                <th>다운로드</th>
+                <th>소속 기관</th>
+                <th>작성일</th>
+                <th>작성자</th>
+                <th>수  정</th>
               </tr>
-            </c:forEach>
-          </tbody>
-        </table>
+            </thead>
+            <tbody class="list-body">
+              <c:forEach items="${boardList}" var="board">
+                <tr>
+                  <td>${board.pk}</td>
+                  <td>${board.title}</td>
+                  <td>${다운로드}</td>
+                  <td>${board.deptDescription}</td>
+                  <td>${board.date}</td>
+                  <td>${board.userName}</td>
+                  <td>${수   정}</td>
+                </tr>
+              </c:forEach>
+            </tbody>
+          </table>
 
       </span>
 
       <!-- 개인정보 조회 및 수정 -->
       <span id="mypage_personalInfo">
-        <table class="document">
-          <h2> 개인정보 조회 </h2>
-          <thead id="list_title">
+        <h2>개인정보 조회</h2>
+        <form class="validation-form" novalidate>
 
-            <tr>
-              <th>번호</th>
-              <th>제목</th>
-              <th>다운로드</th>
-              <th>소속 기관</th>
-              <th>작성일</th>
-              <th>작성자</th>
-            </tr>
-          </thead>
-        </table>
+          <div class="col-md-10 mb-3">
+            <label for="name">이름</label>
+            <input type="text" class="form-control" id="name"value="" required>
+            <div class="invalid-feedback">
+              이름을 입력해주세요.
+            </div>
+          </div>
+
+          <div class="col-md-10 mb-3">
+            <label for="email">이메일</label>
+            <input type="email" class="form-control" id="email" required>
+            <div class="invalid-feedback">
+              이메일을 입력해주세요.
+            </div>
+          </div>
+
+          <div class="col-md-10 mb-3">
+            <label for="inputPassword">비밀번호</label>
+            <input type="password" class="form-control" id="inputPassword" required>
+          </div>
+
+          <div class="col-md-10 mb-3">
+            <label for="inputPasswordCheck">비밀번호확인</label>
+            <input type="password" class="form-control" id="inputPasswordCheck" 
+              onchange="check_pwd()" required>
+            <td id="check"></td>
+          </div>
+          <div class="col-md-10 mb-3">
+            <div class="department">
+              <label for="department">소속기관</label>
+              <input type="tel" class="form-control" id="inputdept" required>
+            </div>
+          </div>
+
+          <div class="col-md-10 mb-3">
+            <label for="inputPhoneNum">휴대폰 번호</label>
+            <input type="tel" class="form-control" id="inputPhoneNum" required>
+
+          </div>
+          <div class="col-md-10 mb-3">
+            <label for="inputDeptNum">부서 번호</label>
+            <input type="tel" class="form-control" id="inputDeptNum" required>
+          </div>
+
+          <hr class="mb-4">
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="aggrement" required>
+            <label class="custom-control-label" for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
+          </div>
+          <div class="mb-4"></div>
+          <button class="btn btn-primary btn-lg btn-block" type="submit">수정하기</button>
+        </form>
+      </div>
+    </div>
       </span>
 
       <!-- 마이태그 수정 -->
       <span id="mypage_mytag">
-        <table class="document">
           <h2> 마이태그 수정 </h2>
-          <thead id="list_title">
 
-            <tr>
-              <th>번호</th>
-              <th>제목</th>
-              <th>다운로드</th>
-              <th>소속 기관</th>
-              <th>작성일</th>
-              <th>작성자</th>
-            </tr>
-          </thead>
-        </table>
       </span>
+    </div>
+    <div class="col-3">
+<!--빈공간-->
+    </div>
+  </div>
+</div>
 
+
+
+
+
+
+      <!--script-->
       <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
       <script>
         function body_convert(id) {
@@ -187,32 +241,32 @@
             var2.style.display = "none";
             var3.style.display = "none";
             var4.style.display = "none";
-        //     const data = axios({
-        //       url: 'controller 주소',
-        //       method: 'get',
-        //       params: {
-        //         'user': '${pk}'
-        //     }
-        // });
-        // data.then(function (result) {
-        //   console.log(result.data);
-        //   let boardList = result.data 
-        //   // boardList.array.forEach(element => {
-        //   //   html += 
-        //   // });
-        //   html = 
-        //   <c:forEach items="\${boardList}" var="board">
-        //       <tr>
-        //         <td>${board.pk}</td>
-        //         <td>${board.title}</td>
-        //         <td>${다운로드}</td>
-        //         <td>${board.deptDescription}</td>
-        //         <td>${board.date}</td>
-        //         <td>${board.userName}</td>
-        //       </tr>
-        //   </c:forEach>
+            //     const data = axios({
+            //       url: 'controller 주소',
+            //       method: 'get',
+            //       params: {
+            //         'user': '${pk}'
+            //     }
+            // });
+            // data.then(function (result) {
+            //   console.log(result.data);
+            //   let boardList = result.data 
+            //   // boardList.array.forEach(element => {
+            //   //   html += 
+            //   // });
+            //   html = 
+            //   <c:forEach items="\${boardList}" var="board">
+            //       <tr>
+            //         <td>${board.pk}</td>
+            //         <td>${board.title}</td>
+            //         <td>${다운로드}</td>
+            //         <td>${board.deptDescription}</td>
+            //         <td>${board.date}</td>
+            //         <td>${board.userName}</td>
+            //       </tr>
+            //   </c:forEach>
 
-        // });
+            // });
 
           } else if (id == mypage_starmark) {
             var1.style.display = "none";

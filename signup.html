@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>회원가입 화면 샘플 - Bootstrap</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="css/singup.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="input-form-backgroud row">
+      <div class="input-form col-md-12 mx-auto">
+        <h4 class="mb-4">회원가입</h4>
+        <form class="validation-form" novalidate>
+
+          <div class="col-md-10 mb-3">
+            <label for="name">이름</label>
+            <input type="text" class="form-control" id="name" placeholder="이름을 입력해주세요." value="" required>
+            <div class="invalid-feedback">
+              이름을 입력해주세요.
+            </div>
+          </div>
+
+          <div class="col-md-10 mb-3">
+            <label for="email">이메일</label>
+            <input type="email" class="form-control" id="email" placeholder="you@example.com" required>
+            <div class="invalid-feedback">
+              이메일을 입력해주세요.
+            </div>
+          </div>
+
+          <div class="col-md-10 mb-3">
+            <label for="inputPassword">비밀번호</label>
+            <input type="password" class="form-control" id="inputPassword" placeholder="비밀번호를 입력해주세요" required>
+          </div>
+
+          <div class="col-md-10 mb-3">
+            <label for="inputPasswordCheck">비밀번호확인</label>
+            <input type="password" class="form-control" id="inputPasswordCheck" 
+              placeholder="비밀번호 확인을 위해 다시한번 입력 해 주세요" onchange="check_pwd()" required>
+            <td id="check"></td>
+          </div>
+          <div class="col-md-10 mb-3">
+            <div class="department">
+              <label for="department">소속기관</label>
+              <input type="tel" class="form-control" id="inputdept" placeholder="소속기관 입력해 주세요" required>
+            </div>
+          </div>
+
+          <div class="col-md-10 mb-3">
+            <label for="inputPhoneNum">휴대폰 번호</label>
+            <input type="tel" class="form-control" id="inputPhoneNum" placeholder="휴대폰번호를 입력해 주세요" required>
+
+          </div>
+          <div class="col-md-10 mb-3">
+            <label for="inputDeptNum">부서 번호</label>
+            <input type="tel" class="form-control" id="inputDeptNum" placeholder="사무실번호를 입력해 주세요" required>
+          </div>
+
+          <hr class="mb-4">
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="aggrement" required>
+            <label class="custom-control-label" for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
+          </div>
+          <div class="mb-4"></div>
+          <button class="btn btn-primary btn-lg btn-block" type="submit">가입 완료</button>
+        </form>
+      </div>
+    </div>
+    <footer class="my-3 text-center text-small">
+      <p class="mb-1">&copy; 2022 YD</p>
+    </footer>
+  </div>
+
+</body>
+
+<script>
+  // 비밀번호 동일성 확인
+function check_pwd(){
+  var pwd = document.getElementById('inputPassword').value;
+  var pwdC = document.getElementById('inputPasswordCheck').value;
+  
+  if(pwd !='' && pwdC!=''){
+    if(pwd==pwdC){
+      document.getElementById('check').innerHTML='비밀번호가 일치합니다.'
+      document.getElementById('check').style.color='blue';
+    } else {
+      document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다.';
+      document.getElementById('check').style.color='red';
+    }
+  }
+}
+
+  window.addEventListener('load', () => {
+  const forms = document.getElementsByClassName('validation-form');
+
+  Array.prototype.filter.call(forms, (form) => {
+    form.addEventListener('submit', function (event) {
+      if (form.checkValidity() === false) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+
+      form.classList.add('was-validated');
+    }, false);
+  });
+}, false);
+
+
+
+</script>
+
+</html>

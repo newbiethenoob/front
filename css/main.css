@@ -67,11 +67,15 @@ li {
   border: 1px solid #bcbcbc;
   position: sticky;
   top: 0px;
-white-space: nowrap;
-overflow:hidden;
-text-overflow: ellipsis;
+
 }
 
 td {
   list-style: none;
+}
+
+.right-sidebarList {
+  white-space: nowrap;
+  overflow:hidden;
+  text-overflow: ellipsis;
 }
