@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>회원가입 화면 샘플 - Bootstrap</title>
+  <title>회원가입 화면</title>
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="css/singup.css">
@@ -16,6 +16,7 @@
 </head>
 
 <body>
+  <form action="" method="" class="form-example">
   <div class="container">
     <div class="input-form-backgroud row">
       <div class="input-form col-md-12 mx-auto">
@@ -24,7 +25,7 @@
 
           <div class="col-md-10 mb-3">
             <label for="name">이름</label>
-            <input type="text" class="form-control" id="name" placeholder="이름을 입력해주세요." value="" required>
+            <input type="text" name="name" class="form-control" id="name" placeholder="이름을 입력해주세요." value="" required>
             <div class="invalid-feedback">
               이름을 입력해주세요.
             </div>
@@ -32,7 +33,7 @@
 
           <div class="col-md-10 mb-3">
             <label for="email">이메일</label>
-            <input type="email" class="form-control" id="email" placeholder="you@example.com" required>
+            <input type="email" name="email" class="form-control" id="email" placeholder="you@example.com" required>
             <div class="invalid-feedback">
               이메일을 입력해주세요.
             </div>
@@ -40,30 +41,34 @@
 
           <div class="col-md-10 mb-3">
             <label for="inputPassword">비밀번호</label>
-            <input type="password" class="form-control" id="inputPassword" placeholder="비밀번호를 입력해주세요" required>
+            <input type="password" name="pwd1" id="pwd1" class="form-control" required></input>
           </div>
 
           <div class="col-md-10 mb-3">
             <label for="inputPasswordCheck">비밀번호확인</label>
-            <input type="password" class="form-control" id="inputPasswordCheck" 
-              placeholder="비밀번호 확인을 위해 다시한번 입력 해 주세요" onchange="check_pwd()" required>
-            <td id="check"></td>
+            &nbsp;
+            <input type="password" name="pwd2" id="pwd2" class="form-control" placeholder="비밀번호 확인" reaquired></input>
+            <div class="col-md-10 mb-3">
+              &nbsp;
+            <div class="alert alert-success" id="alert-success" style="display: none;">비밀번호가 일치합니다.</div>
+            <div class="alert alert-danger" id="alert-danger" style="display: none;">비밀번호가 일치하지 않습니다.</div>
+          </div>
           </div>
           <div class="col-md-10 mb-3">
             <div class="department">
               <label for="department">소속기관</label>
-              <input type="tel" class="form-control" id="inputdept" placeholder="소속기관 입력해 주세요" required>
+                <input type="tel" name="dept" class="form-control" id="inputdept" placeholder="소속기관 입력해 주세요" required>
+                &nbsp;
+                <input type="button" class="btn btn-outline-dark btn-sm" value="소속기관 찾기" onclick="showPopup();">
             </div>
           </div>
-
           <div class="col-md-10 mb-3">
             <label for="inputPhoneNum">휴대폰 번호</label>
-            <input type="tel" class="form-control" id="inputPhoneNum" placeholder="휴대폰번호를 입력해 주세요" required>
-
+            <input type="tel" name="phone_num" class="form-control" id="inputPhoneNum" placeholder="휴대폰번호를 입력해 주세요" required>
           </div>
           <div class="col-md-10 mb-3">
             <label for="inputDeptNum">부서 번호</label>
-            <input type="tel" class="form-control" id="inputDeptNum" placeholder="사무실번호를 입력해 주세요" required>
+            <input type="tel" name="dept_num" class="form-control" id="inputDeptNum" placeholder="사무실번호를 입력해 주세요" required>
           </div>
 
           <hr class="mb-4">
@@ -76,47 +81,82 @@
         </form>
       </div>
     </div>
-    <footer class="my-3 text-center text-small">
-      <p class="mb-1">&copy; 2022 YD</p>
-    </footer>
+
   </div>
+  </form>
 
 </body>
 
-<script>
-  // 비밀번호 동일성 확인
-function check_pwd(){
-  var pwd = document.getElementById('inputPassword').value;
-  var pwdC = document.getElementById('inputPasswordCheck').value;
-  
-  if(pwd !='' && pwdC!=''){
-    if(pwd==pwdC){
-      document.getElementById('check').innerHTML='비밀번호가 일치합니다.'
-      document.getElementById('check').style.color='blue';
-    } else {
-      document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다.';
-      document.getElementById('check').style.color='red';
+<!--비밀번호 동일성 확인-->
+<script type="text/javascript">
+  function test() {
+    var p1 = document.getElementById('pwd1').value;
+    var p2 = document.getElementById('pwd2').value;
+    if( p1 != p2 ) {
+      alert("비밀번호가 일치 하지 않습니다");
+      return false;
+    } else{
+      alert("비밀번호가 일치합니다");
+      return true;
     }
+
   }
-}
 
-  window.addEventListener('load', () => {
-  const forms = document.getElementsByClassName('validation-form');
+    var p1 = document.getElementById('pwd1');
+    var p2 = document.getElementById('pwd2');
+    let correct = document.getElementById('alert-success');
+    let wrong = document.getElementById('alert-danger');
 
-  Array.prototype.filter.call(forms, (form) => {
-    form.addEventListener('submit', function (event) {
-      if (form.checkValidity() === false) {
-        event.preventDefault();
-        event.stopPropagation();
+    p2.addEventListener("focusout",()=>{
+      let p1v = p1.value;
+      let p2v = p2.value;
+      if(p1v==p2v){
+        correct.style.display = "block";
+        wrong.style.display = "none";
+      }else{
+        correct.style.display = "none";
+        wrong.style.display = "block";
       }
+    })
+</script>
 
-      form.classList.add('was-validated');
-    }, false);
+<!-- <script>
+
+  // $('#btn').click(function(){
+  //   $('#alert-success').removeClass('hidden');
+  // })
+  // $('alert-success').focusout(function(){
+  //   $(this).addClass('hidden');
+  // });
+
+$(function(){
+    $("btn").click(function(){
+      var pwd1=$("#pwd1").val();
+      var pwd2=$("#pwd2").val();
+      if(pwd1 != "" || pwd2 != ""){
+        if(pwd1 == pwd2){
+          $("alert-success").show();
+          $("alert-danger").hide();
+          $("#submit").removeAttr("disabled");
+        } else {
+          $("alert-success").hide();
+          $("alert-danger").show();
+          $("#submit").removeAttr("disabled", "disabled");
+        }
+      }
+    });
   });
-}, false);
 
+</script> -->
 
-
+<!--소속기관 찾는 팝업창-->
+<script>
+  function showPopup() { 
+    window.open("team_popup.html", 
+                "a", 
+                "width=400, height=300, left=100, top=50"
+                ); 
+    }
 </script>
 
 </html>

@@ -1,85 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">   
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+  <div class="content_title">비밀번호</div>
+  <div class="content_content">
+      <input type="password" id="pwd1" class="pw" placeholder="비밀번호">
+      <span>8~15자리의 영문, 숫자, 특수문자의 입력이 가능합니다.</span>
+  </div>
+    
+  <div class="content_title">비밀번호 확인</div>
+  <div class="content_content">
+      <input type="password" id="pwd2" class="pw" placeholder="비밀번호 확인">
+      <span id="alert-success" style="display: none;">비밀번호가 일치합니다.</span>
+      <span id="alert-danger" style="display: none; color: #d92742; font-weight: bold; ">비밀번호가 일치하지 않습니다.</span>
+  </div>
+</body>
 
-<head>       
-  <meta charset="utf-8">       
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">       
-  <meta name="viewport" content="width=device-width, initial-scale=1">        <title>회원가입</title>       
-  <!-- Bootstrap -->       
-  <link href="css/bootstrap.min.css" rel="stylesheet">       
-  <!-- font awesome -->       
-  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">       
-  <!-- Custom style -->       
-  <link rel="stylesheet" href="css/style.css" media="screen" title="no title" charset="utf-8">
-         
-  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->       
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->       
-  <!--[if lt IE 9]>        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>        <![endif]-->       
-  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->       
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>       
-  <!-- Include all compiled plugins (below), or include individual files as needed -->       
-  <script src="/js/bootstrap.min.js"></script>       
-  <script src="js/join.js"></script>   
-</head>   
+<script>
+  function check_pw(){
+      var pw = document.getElementById('pw').value;
+      var SC = ["!","@","#","$","%"];
+      var check_SC = 0;
 
-<body>        
-  <article class="container">            
-  <div class="page-header">                
-    <div
-        class="col-md-6 col-md-offset-3">                
-        <h3>회원가입 Form</h3>                
-      </div>            
-    </div>
-                <div class="col-sm-6 col-md-offset-3">    
-                  <form role="form">                    
-        <div class="form-group">                        
-          <label for="inputName">성명</label>                        
-          <input
-            type="text" class="form-control" id="inputName" placeholder="이름을 입력해 주세요">                    
-          </div>
-                            
-            <div class="form-group">                        
-              <label for="InputEmail">이메일주소</label>                        
-                <input type="email" class="form-control" id="InputEmail"
-            placeholder="이메일 주소를 입력해주세요">                    
-          </div>                   
-          <div class="form-group">
-                                  
-            <label for="inputPassword">비밀번호</label>                        
-            <input type="password"
-            class="form-control" id="inputPassword" placeholder="비밀번호를 입력해주세요">                    
-          </div>
-                            <div class="form-group">                        
-          <label for="inputPasswordCheck">비밀번호확인</label>                        
-          <input type="password" class="form-control" id="inputPasswordCheck"
-            placeholder="비밀번호 확인을 위해 다시한번 입력 해 주세요">                    
-          </div>                    
-          <div class="form-group">                        
-          <label for="inputMobile">휴대폰 번호</label>                       
-          <input type="tel" class="form-control" id="inputMobile" placeholder="휴대폰번호를 입력해 주세요">                   
-        </div>                    
-        <div class="form-group">                        
-          <label for="inputtelNO">사무실번호</label>                        
-          <input type="tel" class="form-control" id="inputtelNO"
-            placeholder="사무실번호를 입력해 주세요">   
-          </div>                    
-          <div class="form-group">
-          <label>약관 동의</label>                    
-          <div data-toggle="buttons">                   
-            <label class="btn btn-primary active">          
-            <span class="fa fa-check"></span>                    
-            <input id="agree" type="checkbox" 
-            autocomplete="off" checked>                    
-            </label>                    
-            <a href="#">이용약관</a>에 동의합니다.                   
-          </div>                    
-        </div>                    
-        <div class="form-group text-center">
-          <button type="submit" id="join-submit"
-            class="btn btn-primary">                            회원가입<i
-              class="fa fa-check spaceLeft"></i>                        </button>                        <button
-            type="submit" class="btn btn-warning">                            가입취소<i
-              class="fa fa-times spaceLeft"></i>                        </button>                    </div>
-                        </form>            </div>        </article>    </body>
+      if(pw.length < 6 || pw.length>16){
+          window.alert('비밀번호는 6글자 이상, 16글자 이하만 이용 가능합니다.');
+          document.getElementById('pw').value='';
+      }
+  }
+</script>
+
+<script type="text/javascript">
+  $(function(){
+    $("#alert-success").hide();
+    $("#alert-danger").hide();
+    $("input").keyup(function(){
+      var pwd1=$("#pwd1").val();
+      var pwd2=$("#pwd2").val();
+      if(pwd1 != "" || pwd2 != ""){
+        if(pwd1 == pwd2){
+          $("alert-success").show();
+          $("alert-danger").hide();
+          $("#submit").removeAttr("disabled");
+        } else {
+          $("alert-success").hide();
+          $("alert-danger").show();
+          $("#submit").removeAttr("disabled", "disabled");
+        }
+      }
+    });
+  });
+</script>
 
 </html>

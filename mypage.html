@@ -22,213 +22,219 @@
     </header>
 
     <body>
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <div class="sticky-top">
-      <!--마이페이지 사이드바-->
-      <div class="mypage-sidebar">
-        <div class="mypage-category">
-          <h2>My page</h2>
-          <div class="mypage-category-list">
-            <ul>
-              <li onclick="body_convert(mypage_mywriting)">나의 작성글</li>
-              <li onclick="body_convert(mypage_starmark)">즐겨찾기</li>
-              <li onclick="body_convert(mypage_personalInfo)">개인정보 조회</li>
-              <li onclick="body_convert(mypage_mytag)">마이태그 수정</li>
-            </ul>
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <div class="sticky-top">
+              <!--마이페이지 사이드바-->
+              <div class="mypage-sidebar">
+                <div class="mypage-category">
+                  <h2>My page</h2>
+                  <div class="mypage-category-list">
+                    <ul>
+                      <li onclick="body_convert(mypage_mywriting)">나의 작성글</li>
+                      <li onclick="body_convert(mypage_starmark)">즐겨찾기</li>
+                      <li onclick="body_convert(mypage_personalInfo)">개인정보 조회</li>
+                      <li onclick="body_convert(mypage_mytag)">마이태그 수정</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+          <div class="col-10">
+            <!--마이페이지 바디-->
+            <!-- 목록 리스트 -->
+            <span id="mypage_mywriting">
+              <h2> 나의 작성 문서 </h2>
+              <table class="table table-hover">
+                <thead id="list_title">
+                  <tr>
+                    <th>번호</th>
+                    <th>제목</th>
+                    <th>다운로드</th>
+                    <th>소속 기관</th>
+                    <th>작성일</th>
+                    <th>작성자</th>
+                  </tr>
+                </thead>
+                <tbody class="list-body">
+                  <tr>
+                    <td>10</td>
+                    <td>공공문서 관련한 문서 관리</td>
+                    <td>파일</td>
+                    <td>세종특별청사</td>
+                    <td>5/19</td>
+                    <td>부서관</td>
+                  </tr>
+                  <tr>
+                    <td>10</td>
+                    <td>공공문서 관련한 문서 관리</td>
+                    <td>파일</td>
+                    <td>세종특별청사</td>
+                    <td>5/19</td>
+                    <td>부서관</td>
+                  </tr>
+                  <tr>
+                    <td>10</td>
+                    <td>공공문서 관련한 문서 관리</td>
+                    <td>파일</td>
+                    <td>세종특별청사</td>
+                    <td>5/19</td>
+                    <td>부서관</td>
+                  </tr>
+                  <tr>
+                    <td>10</td>
+                    <td>공공문서 관련한 문서 관리</td>
+                    <td>파일</td>
+                    <td>세종특별청사</td>
+                    <td>5/19</td>
+                    <td>부서관</td>
+                  </tr>
+                  <tr>
+                    <td>10</td>
+                    <td>공공문서 관련한 문서 관리</td>
+                    <td>파일</td>
+                    <td>세종특별청사</td>
+                    <td>5/19</td>
+                    <td>부서관</td>
+                  </tr>
+                  <c:forEach items="${boardList}" var="board">
+                    <tr>
+                      <td>${board.pk}</td>
+                      <td>${board.title}</td>
+                      <td>${다운로드}</td>
+                      <td>${board.deptDescription}</td>
+                      <td>${board.date}</td>
+                      <td>${board.userName}</td>
+                    </tr>
+                  </c:forEach>
+
+                </tbody>
+              </table>
+
+            </span>
+
+            <!-- 즐겨찾기 -->
+            <span id="mypage_starmark">
+              <h2> 즐겨찾기 </h2>
+              <table class="table table-hover">
+                <thead id="list_title">
+
+                  <tr>
+                    <th>번호</th>
+                    <th>제목</th>
+                    <th>다운로드</th>
+                    <th>소속 기관</th>
+                    <th>작성일</th>
+                    <th>작성자</th>
+                    <th>수 정</th>
+                  </tr>
+                </thead>
+                <tbody class="list-body">
+                  <c:forEach items="${boardList}" var="board">
+                    <tr>
+                      <td>${board.pk}</td>
+                      <td>${board.title}</td>
+                      <td>${다운로드}</td>
+                      <td>${board.deptDescription}</td>
+                      <td>${board.date}</td>
+                      <td>${board.userName}</td>
+                      <td>${수 정}</td>
+                    </tr>
+                  </c:forEach>
+                </tbody>
+              </table>
+
+            </span>
+
+            <!-- 개인정보 조회 및 수정 -->
+            <span id="mypage_personalInfo">
+              <h2>개인정보 조회</h2>
+              <form class="validation-form" novalidate>
+
+                <div class="col-md-10 mb-3">
+                  <label for="name">이름</label>
+                  <input type="text" class="form-control" id="name" value="" required>
+                  <div class="invalid-feedback">
+                    이름을 입력해주세요.
+                  </div>
+                </div>
+
+                <div class="col-md-10 mb-3">
+                  <label for="email">이메일</label>
+                  <input type="email" class="form-control" id="email" required>
+                  <div class="invalid-feedback">
+                    이메일을 입력해주세요.
+                  </div>
+                </div>
+
+                <div class="col-md-10 mb-3">
+                  <label for="inputPassword">비밀번호</label>
+                  <input type="password" class="form-control" id="inputPassword" required>
+                </div>
+
+                <div class="col-md-10 mb-3">
+                  <label for="inputPasswordCheck">비밀번호확인</label>
+                  <input type="password" class="form-control" id="inputPasswordCheck" onchange="check_pwd()" required>
+                  <td id="check"></td>
+                </div>
+                <div class="col-md-10 mb-3">
+                  <div class="department">
+                    <label for="department">소속기관</label>
+                    <input type="tel" class="form-control" id="inputdept" required>
+                  </div>
+                </div>
+
+                <div class="col-md-10 mb-3">
+                  <label for="inputPhoneNum">휴대폰 번호</label>
+                  <input type="tel" class="form-control" id="inputPhoneNum" required>
+
+                </div>
+                <div class="col-md-10 mb-3">
+                  <label for="inputDeptNum">부서 번호</label>
+                  <input type="tel" class="form-control" id="inputDeptNum" required>
+                </div>
+
+                <hr class="mb-4">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="aggrement" required>
+                  <label class="custom-control-label" for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
+                </div>
+                <div class="mb-4"></div>
+                <button class="btn btn-primary btn-lg btn-block" type="submit">수정하기</button>
+              </form>
+
+         
+          </span>
+          
+          <!-- 마이태그 수정 -->
+          <span id="mypage_mytag">
+            <h2> 마이태그 수정 </h2>
+            <div style="margin-top:40px; margin-left:40px;" class="content">
+              <div style="display: flex;">
+                <input type="text" id="tag" size="20" placeholder="태그입력" disabled=""/>
+              </div>
+
+              <ul id="tag-list">
+              </ul>
+
+            </div>
+
+          </span>
+        </div>
         </div>
       </div>
-    </div>
-    </div>
-    <div class="col-10">
-            <!--마이페이지 바디-->
-      <!-- 목록 리스트 -->
-      <span id="mypage_mywriting">
-          <h2> 나의 작성 문서 </h2>
-          <table class="table table-hover">
-            <thead id="list_title">
-              <tr>
-                <th>번호</th>
-                <th>제목</th>
-                <th>다운로드</th>
-                <th>소속 기관</th>
-                <th>작성일</th>
-                <th>작성자</th>
-              </tr>
-            </thead>
-            <tbody class="list-body">
-              <tr>
-                <td>10</td>
-                <td>공공문서 관련한 문서 관리</td>
-                <td>파일</td>
-                <td>세종특별청사</td>
-                <td>5/19</td>
-                <td>부서관</td>
-              </tr>
-              <tr>
-                <td>10</td>
-                <td>공공문서 관련한 문서 관리</td>
-                <td>파일</td>
-                <td>세종특별청사</td>
-                <td>5/19</td>
-                <td>부서관</td>
-              </tr>
-              <tr>
-                <td>10</td>
-                <td>공공문서 관련한 문서 관리</td>
-                <td>파일</td>
-                <td>세종특별청사</td>
-                <td>5/19</td>
-                <td>부서관</td>
-              </tr>
-              <tr>
-                <td>10</td>
-                <td>공공문서 관련한 문서 관리</td>
-                <td>파일</td>
-                <td>세종특별청사</td>
-                <td>5/19</td>
-                <td>부서관</td>
-              </tr>
-              <tr>
-                <td>10</td>
-                <td>공공문서 관련한 문서 관리</td>
-                <td>파일</td>
-                <td>세종특별청사</td>
-                <td>5/19</td>
-                <td>부서관</td>
-              </tr>
-              <c:forEach items="${boardList}" var="board">
-                <tr>
-                  <td>${board.pk}</td>
-                  <td>${board.title}</td>
-                  <td>${다운로드}</td>
-                  <td>${board.deptDescription}</td>
-                  <td>${board.date}</td>
-                  <td>${board.userName}</td>
-                </tr>
-              </c:forEach>
-
-            </tbody>
-          </table>
-
-      </span>
-
-      <!-- 즐겨찾기 -->
-      <span id="mypage_starmark">
-          <h2> 즐겨찾기 </h2>
-          <table class="table table-hover">
-            <thead id="list_title">
-
-              <tr>
-                <th>번호</th>
-                <th>제목</th>
-                <th>다운로드</th>
-                <th>소속 기관</th>
-                <th>작성일</th>
-                <th>작성자</th>
-                <th>수  정</th>
-              </tr>
-            </thead>
-            <tbody class="list-body">
-              <c:forEach items="${boardList}" var="board">
-                <tr>
-                  <td>${board.pk}</td>
-                  <td>${board.title}</td>
-                  <td>${다운로드}</td>
-                  <td>${board.deptDescription}</td>
-                  <td>${board.date}</td>
-                  <td>${board.userName}</td>
-                  <td>${수   정}</td>
-                </tr>
-              </c:forEach>
-            </tbody>
-          </table>
-
-      </span>
-
-      <!-- 개인정보 조회 및 수정 -->
-      <span id="mypage_personalInfo">
-        <h2>개인정보 조회</h2>
-        <form class="validation-form" novalidate>
-
-          <div class="col-md-10 mb-3">
-            <label for="name">이름</label>
-            <input type="text" class="form-control" id="name"value="" required>
-            <div class="invalid-feedback">
-              이름을 입력해주세요.
-            </div>
-          </div>
-
-          <div class="col-md-10 mb-3">
-            <label for="email">이메일</label>
-            <input type="email" class="form-control" id="email" required>
-            <div class="invalid-feedback">
-              이메일을 입력해주세요.
-            </div>
-          </div>
-
-          <div class="col-md-10 mb-3">
-            <label for="inputPassword">비밀번호</label>
-            <input type="password" class="form-control" id="inputPassword" required>
-          </div>
-
-          <div class="col-md-10 mb-3">
-            <label for="inputPasswordCheck">비밀번호확인</label>
-            <input type="password" class="form-control" id="inputPasswordCheck" 
-              onchange="check_pwd()" required>
-            <td id="check"></td>
-          </div>
-          <div class="col-md-10 mb-3">
-            <div class="department">
-              <label for="department">소속기관</label>
-              <input type="tel" class="form-control" id="inputdept" required>
-            </div>
-          </div>
-
-          <div class="col-md-10 mb-3">
-            <label for="inputPhoneNum">휴대폰 번호</label>
-            <input type="tel" class="form-control" id="inputPhoneNum" required>
-
-          </div>
-          <div class="col-md-10 mb-3">
-            <label for="inputDeptNum">부서 번호</label>
-            <input type="tel" class="form-control" id="inputDeptNum" required>
-          </div>
-
-          <hr class="mb-4">
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="aggrement" required>
-            <label class="custom-control-label" for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
-          </div>
-          <div class="mb-4"></div>
-          <button class="btn btn-primary btn-lg btn-block" type="submit">수정하기</button>
-        </form>
+      <div class="col-3">
+        <!--빈공간-->
       </div>
-    </div>
-      </span>
-
-      <!-- 마이태그 수정 -->
-      <span id="mypage_mytag">
-          <h2> 마이태그 수정 </h2>
-
-      </span>
-    </div>
-    <div class="col-3">
-<!--빈공간-->
-    </div>
-  </div>
-</div>
-
-
-
-
-
+      </div>
+      </div>
 
       <!--script-->
       <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
       <script>
+        // sidebar  
         function body_convert(id) {
           let var1 = document.querySelector("#mypage_mywriting")
           let var2 = document.querySelector("#mypage_starmark")
@@ -290,6 +296,83 @@
         }
 
 
+        // mytag
+        $(document)
+          .ready(function () {
+
+            var tag = {};
+            var counter = 0;
+            var test = document.querySelector("#tag")
+
+            // 태그를 추가한다.
+            function addTag(value) {
+              if(tag != null){
+                // disabled 를 활용해 input 비활성화
+                //test.setAttribute("disabled","true")
+                $('.tag') = $('.tag').attr('disabled',true);
+              } else {
+                tag[counter] = value; // 태그를 Object 안에 추가
+                counter++; // counter 증가 삭제를 위한 del-btn 의 고유 id 가 된다.
+              }
+              
+            }
+               // 최종적으로 서버에 넘길때 tag 안에 있는 값을 array type 으로 만들어서 넘긴다.
+            function marginTag() {
+              return Object.values(tag)
+                .filter(function (word) {
+                  return word !== "";
+                });
+            }
+              
+            $("#tag").on("keyup", function (e) {
+              var self = $(this);
+              console.log("keypress");
+
+              // input 에 focus 되있을 때 엔터 및 스페이스바 입력시 구동
+              if (e.key === "Enter" || e.keyCode == 32) {
+
+                var tagValue = self.val(); // 값 가져오기
+
+                // 값이 없으면 동작 안합니다.
+                if (tagValue !== "") {
+                    // 같은 태그가 있는지 검사한다. 있다면 해당값이 array 로 return 된다.
+                    var result = Object.values(tag)
+                      .filter(function (word) {
+                        return word === tagValue;
+                      })
+
+                    // 태그 중복 검사
+                    if (result.length == 0) {
+                      $("#tag-list")
+                        .append("<li class='tag-item'>" + tagValue + "<span class='del-btn' idx='" + counter + "'>x</span></li>");
+                      addTag(tagValue);
+                      self.val("");
+                    } else {
+                      alert("태그값이 중복됩니다.");
+                    }
+                  }
+                  e.preventDefault(); // SpaceBar 시 빈공간이 생기지 않도록 방지
+
+              }
+                });
+
+              
+
+
+            // 삭제 버튼
+            // 삭제 버튼은 비동기적 생성이므로 document 최초 생성시가 아닌 검색을 통해 이벤트를 구현시킨다.
+            $(document)
+              .on("click", ".del-btn", function (e) {
+                var index = $(this)
+                  .attr("idx");
+                tag[index] = "";
+                $(this)
+                  .parent()
+                  .remove();
+              });       
+        });
+       
       </script>
+
 
     </body>
