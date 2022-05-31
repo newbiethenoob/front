@@ -176,26 +176,32 @@
 
                 <div class="col-md-10 mb-3">
                   <label for="inputPasswordCheck">비밀번호확인</label>
-                  <input type="password" class="form-control" id="inputPasswordCheck" onchange="check_pwd()" required>
-                  <td id="check"></td>
+                  &nbsp;
+                  <input type="password" name="pwd2" id="pwd2" class="form-control" placeholder="비밀번호 확인"
+                    reaquired></input>
+                  <div class="col-md-10 mb-3">
+                    &nbsp;
+                    <div class="alert alert-success" id="alert-success" style="display: none;">비밀번호가 일치합니다.</div>
+                    <div class="alert alert-danger" id="alert-danger" style="display: none;">비밀번호가 일치하지 않습니다.</div>
+                  </div>
                 </div>
                 <div class="col-md-10 mb-3">
                   <div class="department">
                     <label for="department">소속기관</label>
-                    <input type="tel" class="form-control" id="inputdept" required>
+                    <input type="tel" name="dept" class="form-control" id="inputdept" placeholder="소속기관 입력해 주세요"
+                      required>
+                    &nbsp;
+                    <input type="button" class="btn btn-outline-dark btn-sm" value="소속기관 찾기" onclick="showPopup();">
                   </div>
                 </div>
-
                 <div class="col-md-10 mb-3">
                   <label for="inputPhoneNum">휴대폰 번호</label>
                   <input type="tel" class="form-control" id="inputPhoneNum" required>
-
                 </div>
                 <div class="col-md-10 mb-3">
                   <label for="inputDeptNum">부서 번호</label>
                   <input type="tel" class="form-control" id="inputDeptNum" required>
                 </div>
-
                 <hr class="mb-4">
                 <div class="custom-control custom-checkbox">
                   <input type="checkbox" class="custom-control-input" id="aggrement" required>
@@ -205,24 +211,24 @@
                 <button class="btn btn-primary btn-lg btn-block" type="submit">수정하기</button>
               </form>
 
-         
-          </span>
-          
-          <!-- 마이태그 수정 -->
-          <span id="mypage_mytag">
-            <h2> 마이태그 수정 </h2>
-            <div style="margin-top:40px; margin-left:40px;" class="content">
-              <div style="display: flex;">
-                <input type="text" id="tag" size="20" placeholder="태그입력" disabled=""/>
+
+            </span>
+
+            <!-- 마이태그 수정 -->
+            <span id="mypage_mytag">
+              <h2> 마이태그 수정 </h2>
+              <div style="margin-top:40px; margin-left:40px;" class="content">
+                <div style="display: flex;">
+                  <input type="text" id="tag" size="20" placeholder="태그입력" disabled="" />
+                </div>
+
+                <ul id="tag-list">
+                </ul>
+
               </div>
 
-              <ul id="tag-list">
-              </ul>
-
-            </div>
-
-          </span>
-        </div>
+            </span>
+          </div>
         </div>
       </div>
       <div class="col-3">
@@ -306,24 +312,24 @@
 
             // 태그를 추가한다.
             function addTag(value) {
-              if(tag != null){
+              if (tag != null) {
                 // disabled 를 활용해 input 비활성화
                 //test.setAttribute("disabled","true")
-                $('.tag') = $('.tag').attr('disabled',true);
+                $('.tag') = $('.tag').attr('disabled', true);
               } else {
                 tag[counter] = value; // 태그를 Object 안에 추가
                 counter++; // counter 증가 삭제를 위한 del-btn 의 고유 id 가 된다.
               }
-              
+
             }
-               // 최종적으로 서버에 넘길때 tag 안에 있는 값을 array type 으로 만들어서 넘긴다.
+            // 최종적으로 서버에 넘길때 tag 안에 있는 값을 array type 으로 만들어서 넘긴다.
             function marginTag() {
               return Object.values(tag)
                 .filter(function (word) {
                   return word !== "";
                 });
             }
-              
+
             $("#tag").on("keyup", function (e) {
               var self = $(this);
               console.log("keypress");
@@ -335,28 +341,28 @@
 
                 // 값이 없으면 동작 안합니다.
                 if (tagValue !== "") {
-                    // 같은 태그가 있는지 검사한다. 있다면 해당값이 array 로 return 된다.
-                    var result = Object.values(tag)
-                      .filter(function (word) {
-                        return word === tagValue;
-                      })
+                  // 같은 태그가 있는지 검사한다. 있다면 해당값이 array 로 return 된다.
+                  var result = Object.values(tag)
+                    .filter(function (word) {
+                      return word === tagValue;
+                    })
 
-                    // 태그 중복 검사
-                    if (result.length == 0) {
-                      $("#tag-list")
-                        .append("<li class='tag-item'>" + tagValue + "<span class='del-btn' idx='" + counter + "'>x</span></li>");
-                      addTag(tagValue);
-                      self.val("");
-                    } else {
-                      alert("태그값이 중복됩니다.");
-                    }
+                  // 태그 중복 검사
+                  if (result.length == 0) {
+                    $("#tag-list")
+                      .append("<li class='tag-item'>" + tagValue + "<span class='del-btn' idx='" + counter + "'>x</span></li>");
+                    addTag(tagValue);
+                    self.val("");
+                  } else {
+                    alert("태그값이 중복됩니다.");
                   }
-                  e.preventDefault(); // SpaceBar 시 빈공간이 생기지 않도록 방지
+                }
+                e.preventDefault(); // SpaceBar 시 빈공간이 생기지 않도록 방지
 
               }
-                });
+            });
 
-              
+
 
 
             // 삭제 버튼
@@ -369,9 +375,52 @@
                 $(this)
                   .parent()
                   .remove();
-              });       
-        });
-       
+              });
+          });
+
+      </script>
+
+      <!--비밀번호 동일성 확인-->
+      <script type="text/javascript">
+        function test() {
+          var p1 = document.getElementById('pwd1').value;
+          var p2 = document.getElementById('pwd2').value;
+          if (p1 != p2) {
+            alert("비밀번호가 일치 하지 않습니다");
+            return false;
+          } else {
+            alert("비밀번호가 일치합니다");
+            return true;
+          }
+
+        }
+
+        var p1 = document.getElementById('pwd1');
+        var p2 = document.getElementById('pwd2');
+        let correct = document.getElementById('alert-success');
+        let wrong = document.getElementById('alert-danger');
+
+        p2.addEventListener("focusout", () => {
+          let p1v = p1.value;
+          let p2v = p2.value;
+          if (p1v == p2v) {
+            correct.style.display = "block";
+            wrong.style.display = "none";
+          } else {
+            correct.style.display = "none";
+            wrong.style.display = "block";
+          }
+        })
+      </script>
+
+      <!--소속기관 찾는 팝업창-->
+      <script>
+        function showPopup() {
+          window.open("team_popup.html",
+            "a",
+            "width=400, height=300, left=100, top=50"
+          );
+        }
       </script>
 
 
